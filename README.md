@@ -27,23 +27,28 @@ Project Status:Frontend Development
 - CSS3
 - JavaScript
 
-📂 Project Structure
 
-text
+## 📂 Project Structure
+
+```text
 Hostel-Management-System/
 ├── index.html
 ├── style.css
 ├── script.js
 └── README.md
+```
 
-💻 Getting Started
-🔮 Future Improvements
+## 💻 Getting Started
 
-- Develop a backend using Node.js and Express.js
-- Integrate a database for storing student and room information
-- Implement authentication and authorization
-- Connect frontend forms to backend APIs
-- Add input validation and error handling
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/rahulV2f/Hostel_Management-_System.git
+   ```
+
+2. Open the project folder in VS Code.
+
+3. Open `index.html` in your browser, or use the Live Server extension.
+
 
 👨‍💻 Author
 
