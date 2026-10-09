@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HostelHub | Hostel Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">H</div>
+                <div>
+                    <h2>Hostel Verse</h2>
+                    <p>Hall Management Portal</p>
+                </div>
+            </div>
+
+            <p class="menu-label">MAIN MENU</p>
+
+            <nav>
+                <button class="nav-link active" data-page="dashboard">
+                    <span>▦</span> Dashboard
+                </button>
+                <button class="nav-link" data-page="students">
+                    <span>♙</span> Students
+                </button>
+                <button class="nav-link" data-page="rooms">
+                    <span>▤</span> Room Allocation
+                </button>
+                <button class="nav-link" data-page="complaints">
+                    <span>⚒</span> Complaints
+                    <span class="nav-count" id="sidebarComplaintCount">0</span>
+                </button>
+                <button class="nav-link" data-page="Notifications">
+                    <span>▦</span> Notifications
+                </button>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="admin-card">
+                    <div class="avatar">A</div>
+                    <div>
+                        <strong>Administrator</strong>
+                        <small>Hostel Office</small>
+                    </div>
+                </div>
+                <p class="sidebar-footer">HostelHub © 2026</p>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">HALL ADMINISTRATION</p>
+                    <h1 id="pageTitle">Dashboard</h1>
+                </div>
+                <div class="topbar-right">
+                    <span class="status-dot"></span>
+                    <span>System Online</span>
+                    <div class="avatar admin-avatar">A</div>
+                </div>
+            </header>
+
+            <!-- Dashboard -->
+            <section class="page active" id="dashboard">
+                <div class="welcome-banner">
+                    <div>
+                        <p class="banner-label">HOSTEL MANAGEMENT SYSTEM</p>
+                        <h2>Welcome back, Administrator! 👋</h2>
+                        <p>Manage residents, room allocation, and maintenance requests in one place.</p>
+                    </div>
+                    <div class="banner-symbol">⌂</div>
+                </div>
+
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span>Total Students</span>
+                            <div class="stat-icon purple">♙</div>
+                        </div>
+                        <h2 id="totalStudents">0</h2>
+                        <p>Registered residents</p>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span>Total Rooms</span>
+                            <div class="stat-icon blue">▤</div>
+                        </div>
+                        <h2 id="totalRooms">12</h2>
+                        <p>Available hostel rooms</p>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span>Occupied Beds</span>
+                            <div class="stat-icon green">✓</div>
+                        </div>
+                        <h2 id="occupiedBeds">0</h2>
+                        <p id="occupancyText">0% occupancy</p>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span>Open Complaints</span>
+                            <div class="stat-icon orange">⚒</div>
+                        </div>
+                        <h2 id="openComplaints">0</h2>
+                        <p>Require attention</p>
+                    </article>
+                </div>
+
+                <div class="dashboard-grid">
+                    <article class="panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h3>Recent Students</h3>
+                                <p>Latest registered residents</p>
+                            </div>
+                            <button class="text-button" data-go="students">View all →</button>
+                        </div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Student</th>
+                                        <th>Student ID</th>
+                                        <th>Room</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentStudents"></tbody>
+                            </table>
+                        </div>
+                    </article>
+
+                    <article class="panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h3>Room Occupancy</h3>
+                                <p>Current bed utilization</p>
+                            </div>
+                        </div>
+                        <div class="occupancy-summary">
+                            <div class="occupancy-number">
+                                <strong id="occupancyPercent">0%</strong>
+                                <span>occupied</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill" id="occupancyBar"></div>
+                            </div>
+                            <div class="occupancy-legend">
+                                <span><i class="legend-dot occupied-dot"></i> Occupied beds</span>
+                                <span id="availableBeds">24 beds available</span>
+                            </div>
+                        </div>
+                        <div class="quick-note">
+                            <strong>💡 Quick tip</strong>
+                            <p>Keep room allocations updated whenever a resident checks in or checks out.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <article class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Recent Complaints</h3>
+                            <p>Maintenance requests from residents</p>
+                        </div>
+                        <button class="text-button" data-go="complaints">View all →</button>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Complaint</th>
+                                    <th>Category</th>
+                                    <th>Student</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentComplaints"></tbody>
+                        </table>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Students -->
+            <section class="page" id="students">
+                <div class="page-toolbar">
+                    <div>
+                        <h2>Student Management</h2>
+                        <p>Register and manage hostel residents.</p>
+                    </div>
+                    <button class="primary-btn" id="showStudentForm">+ Add Student</button>
+                </div>
+
+                <form class="form-card hidden" id="studentForm">
+                    <h3>Register a Student</h3>
+                    <div class="form-grid">
+                        <label>Full Name
+                            <input type="text" id="studentName" placeholder="Enter full name" required>
+                        </label>
+                        <label>Student ID
+                            <input type="text" id="studentId" placeholder="e.g. BM2026001" required>
+                        </label>
+                        <label>Email
+                            <input type="email" id="studentEmail" placeholder="student@example.com" required>
+                        </label>
+                        <label>Department
+                            <input type="text" id="studentDepartment" placeholder="e.g. Biomedical Engineering"
+                                required>
+                        </label>
+                        <label>Room Number
+                            <select id="studentRoom" required></select>
+                        </label>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn" id="cancelStudent">Cancel</button>
+                        <button type="submit" class="primary-btn">Register Student</button>
+                    </div>
+                </form>
+
+                <article class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Registered Students</h3>
+                            <p id="studentCountLabel">0 residents</p>
+                        </div>
+                        <input type="search" id="studentSearch" class="search-input" placeholder="Search students...">
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Student ID</th>
+                                    <th>Department</th>
+                                    <th>Room</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentsTable"></tbody>
+                        </table>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Rooms -->
+            <section class="page" id="rooms">
+                <div class="page-toolbar">
+                    <div>
+                        <h2>Room Allocation</h2>
+                        <p>Monitor occupancy and available beds.</p>
+                    </div>
+                </div>
+
+                <div class="room-summary" id="roomSummary"></div>
+
+                <div class="room-grid" id="roomGrid"></div>
+            </section>
+
+            <!-- Complaints -->
+            <section class="page" id="complaints">
+                <div class="page-toolbar">
+                    <div>
+                        <h2>Complaint Management</h2>
+                        <p>Track maintenance issues and resolution status.</p>
+                    </div>
+                    <button class="primary-btn" id="showComplaintForm">+ New Complaint</button>
+                </div>
+
+                <form class="form-card hidden" id="complaintForm">
+                    <h3>Submit a Complaint</h3>
+                    <div class="form-grid">
+                        <label>Complaint Title
+                            <input type="text" id="complaintTitle" placeholder="e.g. Broken ceiling fan" required>
+                        </label>
+                        <label>Student
+                            <select id="complaintStudent" required></select>
+                        </label>
+                        <label>Category
+                            <select id="complaintCategory" required>
+                                <option value="">Select category</option>
+                                <option>Electrical</option>
+                                <option>Plumbing</option>
+                                <option>Drinking Water</option>
+                                <option>Carpentry</option>
+                                <option>LAN</option>
+                                <option>Other</option>
+                            </select>
+                        </label>
+                        <label>Priority
+                            <select id="complaintPriority">
+                                <option>Medium</option>
+                                <option>Low</option>
+                                <option>High</option>
+                            </select>
+                        </label>
+                    </div>
+                    <label class="full-label">Description
+                        <textarea id="complaintDescription" rows="3" placeholder="Describe the issue..."
+                            required></textarea>
+                    </label>
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn" id="cancelComplaint">Cancel</button>
+                        <button type="submit" class="primary-btn">Submit Complaint</button>
+                    </div>
+                </form>
+
+                <article class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>All Complaints</h3>
+                            <p>Review and update requests.</p>
+                        </div>
+                        <select id="complaintFilter" class="search-input">
+                            <option value="All">All statuses</option>
+                            <option value="Open">Open</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Resolved">Resolved</option>
+                        </select>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Complaint</th>
+                                    <th>Category</th>
+                                    <th>Student</th>
+                                    <th>Priority</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="complaintsTable"></tbody>
+                        </table>
+                    </div>
+                </article>
+            </section>
+
+            <footer class="main-footer">
+                HostelHub · Hostel Management System · Frontend Prototype
+            </footer>
+        </main>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
